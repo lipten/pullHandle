@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <title>pullHandle - demo</title>
+  <link rel="stylesheet" href="pullHandle.css">
+  <style>
+    html,body,article{
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      background: #f5f5f5;
+    }
+    ul{
+      padding:0;
+      margin: 0;
+      background: #fff;
+    }
+    ul li {
+      height: 50px;
+      line-height: 50px;
+      text-indent: 1em;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <article id='pullContainer'>
+    <ul>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+    </ul>
+  </article>
+
+  <script src="//cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+  <script src="pullHandle.js"></script>
+  <script>
+    var pullhandle = new pullHandle({
+      container:'.container',
+      url: './api.php',
+      pullDown: {
+        callback: function(data){
+          console.log('pullDown complete:')
+          console.log(data)
+        }
+      },
+      pullUp: {
+        callback: function(data){
+          console.log('pullUp complete:')
+          console.log(data)
+          var moreData='';
+          if(data.length>=1){
+            for(var i = 0,len = data.length;i<len;i++){
+                moreData+='<li>item'+data[i]+'</li>'
+            }
+            $('ul').append(moreData)
+          }else{
+            pullhandle.noData()
+          }
+        }
+      },
+    })
+  </script>
+</body>
+</html>
