@@ -305,7 +305,7 @@
         }
         pullHandle.prototype.fetch = function(callback){
           var self = this;
-          self.loading = true;
+          self.loading = true
           self.page ++;
           //定时开始请求
           var complete = false
@@ -341,6 +341,7 @@
                           callback&&callback(data)
                       }
                   }
+
                 }else if (status=='error'){
                   clearInterval(timer)
                   $('.body-loading').html('<span class="text-tip">数据加载出错，请检查您的网络</span>')
